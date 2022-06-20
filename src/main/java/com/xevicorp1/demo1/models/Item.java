@@ -1,13 +1,26 @@
 package com.xevicorp1.demo1.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name="items")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
 
     private String title;
     private String description;
     private String imageUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Item(String title, String description, String imageUrl, Long id) {
+    /*public Item(String title, String description, String imageUrl, Long id) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -28,5 +41,5 @@ public class Item {
 
     public Long getId() {
         return id;
-    }
+    }*/
 }

@@ -22,7 +22,7 @@ public class itemController {
 
     @GetMapping("/health")
     String healthcheck(){
-        return "hola, tinc health";
+        return "Estic sa :p";
     }
 
     @GetMapping("/items")
@@ -30,32 +30,25 @@ public class itemController {
         var itemList = this.itemRepository.findAll();
         return itemList;
     }
-
-    @GetMapping("/items/{id}")
+/*    @GetMapping("/items/{id}")
     Item getById(@PathVariable Long id) {
         Item item =  this.itemRepository.findById(id);
         return item;
-    }
+    }*/
 
 //  @GetMapping("/items/search?title=title")
 //  List<Item> getBySearch(@RequestParam String title) {
 //  var itemList = this.getItemList();
 
-//    http://localhost:8080/items?title=1
 
-   /* @RequestMapping(value ="/items" , params="title")
+   /* @GetMapping(value ="/items" , params="search")
 
     List<Item> getTitleBySearch(@RequestParam String title) {
         var itemList = this.getItemList();
         return itemList.stream().filter(i -> i.getTitle().contains(title)).collect(Collectors.toList());
     }
 
-    @RequestMapping(value ="/items" ,params="description")
 
-    List<Item> getDescriptionBySearch(@RequestParam String description) {
-        var itemList = this.getItemList();
-        return itemList.stream().filter(i -> i.getDescription().contains(description)).collect(Collectors.toList());
-    }*/
 
     // ELIMINEM D'AQUÍ PERQUÈ NO ÉS REPONSABILITAT D'AQUEST OBJECTE, HO TRASLLADEM A FAKEITEMREPOSITORY I IMPORTEM A GETALL I A ON CALGUI
 /*    private List<Item> getItemList() {

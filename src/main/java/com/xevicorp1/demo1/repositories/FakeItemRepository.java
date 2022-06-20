@@ -9,15 +9,15 @@ import java.util.List;
 // @Repository injecta un BEAN que fa que es facin automàticament news de l'ItemRepository i igualar-lo..
 // ..igualar-lo a ItemController (constructor itemController). SÓN COM COMPONENTS --> es pot "injectar" a qualsevol..
 // .. qualsevol mètode i funció sense haver de fer un "new" abans.
-@Repository
-public class FakeItemRepository implements IItemRepository {
 
-    @Override
+// NO L'UTILITZEM AMB LA BASE DE DADES
+@Repository
+public class FakeItemRepository {
+
     public List<Item> findAll() {
         return getItemList();
     }
 
-    @Override
     public Item findById(Long id){
         var itemList = this.getItemList();
         var item =  itemList.stream().filter(i -> i.getId() == id).findFirst().get();
