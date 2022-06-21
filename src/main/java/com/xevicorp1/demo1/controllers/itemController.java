@@ -7,7 +7,9 @@ import org.springframework.boot.context.config.ConfigDataResourceNotFoundExcepti
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,21 +36,23 @@ public class itemController {
     }
 
     @GetMapping("/items/{id}")
-    Item getById(@PathVariable Long id) {
+        Item getById(
+                @PathVariable Long id){
         Item item =  this.itemRepository.findById(id).get();
         return item;
     }
 
     @PostMapping("/items")
-        Item createItem(@RequestBody Item newItem){
+        Item createItem(
+                @RequestBody Item newItem){
         var item  = this.itemRepository.save(newItem);
         return item;
     }
 
     @PutMapping("/items/{id}")
-    Item updateItem(
-            @PathVariable Long id,
-            @RequestBody Item itemDetails) {
+        Item updateItem(
+                @PathVariable Long id,
+                @RequestBody Item itemDetails) {
         Item item = this.itemRepository.findById(id).get();
 
         item.setTitle(itemDetails.getTitle());
@@ -58,11 +62,16 @@ public class itemController {
         return updatedItem;
     }
 
-//    @DeleteMapping("/items/{id}")
-//    Item updateItem(@RequestBody Item updateItem){
-//        var item  = this.itemRepository.save(updateItem);
-//        return item;
-//    }
+    @DeleteMapping("/items/{id}")
+        Item deleteEmployee(
+                @PathVariable Long id){
+        Item item = this.itemRepository.findById(id).get();
+
+        this.itemRepository.delete(item);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return item;
+    }
 
 //  @GetMapping("/items/search?title=title")
 //  List<Item> getBySearch(@RequestParam String title) {
