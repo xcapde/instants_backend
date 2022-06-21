@@ -73,17 +73,15 @@ public class itemController {
         return item;
     }
 
-//  @GetMapping("/items/search?title=title")
-//  List<Item> getBySearch(@RequestParam String title) {
-//  var itemList = this.getItemList();
-
-
-   /* @GetMapping(value ="/items" , params="search")
-
-    List<Item> getTitleBySearch(@RequestParam String title) {
-        var itemList = this.getItemList();
-        return itemList.stream().filter(i -> i.getTitle().contains(title)).collect(Collectors.toList());
-    }
+   @GetMapping(value ="/items" , params="search")
+        Item getSearchItem(
+            @RequestParam String search) {
+        var items = FakeItemRepository.getItemList();
+        var itemsSearched = items.stream()
+               .filter(i -> i.getTitle().contains(search) || i.getDescription().contains(search))
+               .collect((Collectors.toList()));
+        return itemsSearched;
+   }
 
 
 

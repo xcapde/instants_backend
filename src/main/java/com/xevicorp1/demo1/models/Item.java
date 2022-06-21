@@ -32,12 +32,12 @@ public class Item {
         this.imageUrl = imageUrl;
     }
 
-    /*public Item(String title, String description, String imageUrl, Long id) {
-        this.title = title;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.id = id;
-    }
+//    public Item(String title, String description, String imageUrl, Long id) {
+//        this.title = title;
+//        this.description = description;
+//        this.imageUrl = imageUrl;
+//        this.id = id;
+//    }
 
     public String getTitle() {
         return title;
@@ -53,5 +53,5 @@ public class Item {
 
     public Long getId() {
         return id;
-    }*/
+    }
 }
