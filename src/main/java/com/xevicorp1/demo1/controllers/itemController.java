@@ -3,6 +3,8 @@ package com.xevicorp1.demo1.controllers;
 import com.xevicorp1.demo1.models.Item;
 import com.xevicorp1.demo1.repositories.FakeItemRepository;
 import com.xevicorp1.demo1.repositories.IItemRepository;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,16 +40,29 @@ public class itemController {
     }
 
     @PostMapping("/items")
-    Item createItem(@RequestBody Item newItem){
+        Item createItem(@RequestBody Item newItem){
         var item  = this.itemRepository.save(newItem);
         return item;
     }
 
     @PutMapping("/items/{id}")
-    Item updateItem(@RequestBody Item updateItem){
-        var item  = this.itemRepository.save(updateItem);
-        return item;
+    Item updateItem(
+            @PathVariable Long id,
+            @RequestBody Item itemDetails) {
+        Item item = this.itemRepository.findById(id).get();
+
+        item.setTitle(itemDetails.getTitle());
+        item.setDescription(itemDetails.getDescription());
+        item.setImageUrl(itemDetails.getImageUrl());
+        final Item updatedItem = this.itemRepository.save(item);
+        return updatedItem;
     }
+
+//    @DeleteMapping("/items/{id}")
+//    Item updateItem(@RequestBody Item updateItem){
+//        var item  = this.itemRepository.save(updateItem);
+//        return item;
+//    }
 
 //  @GetMapping("/items/search?title=title")
 //  List<Item> getBySearch(@RequestParam String title) {
