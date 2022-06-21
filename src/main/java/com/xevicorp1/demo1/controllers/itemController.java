@@ -30,11 +30,24 @@ public class itemController {
         var itemList = this.itemRepository.findAll();
         return itemList;
     }
-/*    @GetMapping("/items/{id}")
+
+    @GetMapping("/items/{id}")
     Item getById(@PathVariable Long id) {
-        Item item =  this.itemRepository.findById(id);
+        Item item =  this.itemRepository.findById(id).get();
         return item;
-    }*/
+    }
+
+    @PostMapping("/items")
+    Item createItem(@RequestBody Item newItem){
+        var item  = this.itemRepository.save(newItem);
+        return item;
+    }
+
+    @PutMapping("/items/{id}")
+    Item updateItem(@RequestBody Item updateItem){
+        var item  = this.itemRepository.save(updateItem);
+        return item;
+    }
 
 //  @GetMapping("/items/search?title=title")
 //  List<Item> getBySearch(@RequestParam String title) {
