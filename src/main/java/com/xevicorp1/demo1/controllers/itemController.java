@@ -1,17 +1,12 @@
 package com.xevicorp1.demo1.controllers;
 
 import com.xevicorp1.demo1.models.Item;
-import com.xevicorp1.demo1.repositories.FakeItemRepository;
 import com.xevicorp1.demo1.repositories.IItemRepository;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 public class itemController {
@@ -57,7 +52,7 @@ public class itemController {
 
         item.setTitle(itemDetails.getTitle());
         item.setDescription(itemDetails.getDescription());
-        item.setImageUrl(itemDetails.getImageUrl());
+        item.setImage_url(itemDetails.getImage_url());
         final Item updatedItem = this.itemRepository.save(item);
         return updatedItem;
     }
@@ -73,7 +68,7 @@ public class itemController {
         return item;
     }
 
-   @GetMapping(value ="/items" , params="search")
+   /*@GetMapping(value ="/items" , params="search")
         Item getSearchItem(
             @RequestParam String search) {
         var items = FakeItemRepository.getItemList();
@@ -81,7 +76,7 @@ public class itemController {
                .filter(i -> i.getTitle().contains(search) || i.getDescription().contains(search))
                .collect((Collectors.toList()));
         return itemsSearched;
-   }
+   }*/
 
 
 

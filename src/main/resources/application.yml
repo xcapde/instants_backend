@@ -16,4 +16,5 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
+#      ddl-auto: update - recarrega la base de dades correctament, després de fer el drop
 
