@@ -2,7 +2,7 @@
 // S'assemblen als models però defineixen la forma que tindrà el JSON que surt o que entra
 // És necessari fer data transfer per poder-la guardar
 
-package com.xevicorp1.demo1.dtos;
+package com.xevicorp1.items.dtos;
 
 import lombok.Data;
 

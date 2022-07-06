@@ -1,4 +1,4 @@
-package com.xevicorp1.demo1.models;
+package com.xevicorp1.items.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

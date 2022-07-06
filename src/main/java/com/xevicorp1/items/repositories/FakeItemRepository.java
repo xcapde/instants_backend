@@ -1,6 +1,6 @@
-package com.xevicorp1.demo1.repositories;
+package com.xevicorp1.items.repositories;
 
-import com.xevicorp1.demo1.models.Item;
+import com.xevicorp1.items.models.Item;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

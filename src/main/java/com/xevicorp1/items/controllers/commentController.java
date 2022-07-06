@@ -1,9 +1,9 @@
-package com.xevicorp1.demo1.controllers;
+package com.xevicorp1.items.controllers;
 
-import com.xevicorp1.demo1.dtos.CommentRequestDto;
-import com.xevicorp1.demo1.models.Comment;
-import com.xevicorp1.demo1.repositories.ICommentRepository;
-import com.xevicorp1.demo1.repositories.IItemRepository;
+import com.xevicorp1.items.dtos.CommentRequestDto;
+import com.xevicorp1.items.models.Comment;
+import com.xevicorp1.items.repositories.ICommentRepository;
+import com.xevicorp1.items.repositories.IItemRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

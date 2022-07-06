@@ -1,7 +1,7 @@
-package com.xevicorp1.demo1.controllers;
+package com.xevicorp1.items.controllers;
 
-import com.xevicorp1.demo1.models.Item;
-import com.xevicorp1.demo1.repositories.IItemRepository;
+import com.xevicorp1.items.models.Item;
+import com.xevicorp1.items.repositories.IItemRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
