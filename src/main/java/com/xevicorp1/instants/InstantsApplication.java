@@ -1,13 +1,13 @@
-package com.xevicorp1.marketplace;
+package com.xevicorp1.instants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MarketPlaceApplication {
+public class InstantsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketPlaceApplication.class, args);
+		SpringApplication.run(InstantsApplication.class, args);
 	}
 
 }
