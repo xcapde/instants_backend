@@ -22,7 +22,12 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product create(ProductRequestDto productRequestDto, User auth) {
-        return null;
+    public Product create(ProductRequestDto productDto, User auth) {
+        var product = new Product();
+        product.setName(productDto.getName());
+        product.setImage(productDto.getImage());
+        product.setPrice(productDto.getPrice());
+        product.setSeller(auth);
+        return productRepository.save(product);
     }
 }

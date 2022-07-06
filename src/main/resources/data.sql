@@ -4,6 +4,7 @@ INTO
   (user_Name)
 VALUES
   ('Xavier');
+
 INSERT
 INTO
   products
