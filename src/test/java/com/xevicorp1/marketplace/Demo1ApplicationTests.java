@@ -1,4 +1,4 @@
-package com.xevicorp1.items;
+package com.xevicorp1.marketplace;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

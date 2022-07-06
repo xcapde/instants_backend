@@ -1,13 +1,13 @@
-package com.xevicorp1.items;
+package com.xevicorp1.marketplace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ItemsApplication {
+public class MarketPlaceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ItemsApplication.class, args);
+		SpringApplication.run(MarketPlaceApplication.class, args);
 	}
 
 }
