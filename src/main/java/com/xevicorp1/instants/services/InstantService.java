@@ -22,6 +22,13 @@ public class InstantService implements IInstantService {
     }
 
     @Override
+    public Instant getById(Long id) {
+        var instantList = instantRepository.findAll();
+        var instant = instantList.stream().filter(i -> i.getId() == id).findFirst().get();
+        return instant;
+    }
+
+    @Override
     public Instant create(InstantRequestDto instantDto, User auth) {
         var instant = new Instant();
         instant.setTitle(instantDto.getTitle());

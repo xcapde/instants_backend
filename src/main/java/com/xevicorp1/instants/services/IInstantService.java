@@ -10,6 +10,8 @@ public interface IInstantService {
 
     List<Instant> getAll();
 
+    Instant getById(Long id);
+
     Instant create(InstantRequestDto instantRequestDto, User auth);
 
 }

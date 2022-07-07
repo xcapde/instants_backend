@@ -25,13 +25,19 @@ public class InstantController {
         return instantService.getAll();
     }
 
+    @GetMapping("/instants/{id}")
+    Instant getByID(@PathVariable Long id){
+        Instant instant = instantService.getById(id);
+        return instant;
+    }
+
     @PostMapping("/instants")
     Instant create(@RequestBody InstantRequestDto instantRequest){
         var authUser = getAuthUser();
         return instantService.create(instantRequest, authUser);
     }
-
     private User getAuthUser(){
         return userService.getById(1L);
     }
+
 }
