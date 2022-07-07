@@ -10,6 +10,6 @@ public interface IInstantService {
 
     List<Instant> getAll();
 
-    Instant create(InstantRequestDto instantRequestDto, User userAuth);
+    Instant create(InstantRequestDto instantRequestDto, User auth);
 
 }

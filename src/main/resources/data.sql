@@ -33,4 +33,4 @@ INTO
   comments
   (comment, date, creator_id, instant_id)
 VALUES
-  ('M''encanta aquest lloc!', '07/07/22', 1, 1);
+  ('M''encanta aquest lloc!', 07/07/22, 1, 1);
