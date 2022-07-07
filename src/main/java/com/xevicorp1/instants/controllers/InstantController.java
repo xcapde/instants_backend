@@ -46,5 +46,11 @@ public class InstantController {
         return instant;
     }
 
+    @DeleteMapping("/instants/{id}")
+    Instant delete(@PathVariable Long id){
+        Instant instant = instantService.delete(id);
+        return instant;
+    }
+
 
 }

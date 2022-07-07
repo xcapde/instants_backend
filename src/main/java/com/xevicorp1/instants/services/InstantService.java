@@ -6,7 +6,9 @@ import com.xevicorp1.instants.models.User;
 import com.xevicorp1.instants.respositories.IInstantRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class InstantService implements IInstantService {
@@ -23,8 +25,9 @@ public class InstantService implements IInstantService {
 
     @Override
     public Instant getById(Long id) {
-        var instantList = instantRepository.findAll();
-        var instant = instantList.stream().filter(i -> i.getId() == id).findFirst().get();
+//        var instantList = instantRepository.findAll();
+//        var instant = instantList.stream().filter(i -> i.getId() == id).findFirst().get();
+        var instant = instantRepository.findById(id).get();
         return instant;
     }
 
@@ -47,5 +50,14 @@ public class InstantService implements IInstantService {
         instantToEdit.setImage(instantDto.getImage());
         instantToEdit.setLocation(instantDto.getLocation());
         return instantRepository.save(instantToEdit);
+    }
+
+    @Override
+    public Instant delete(Long id) {
+        var instantToDelete = instantRepository.findById(id).get();
+        this.instantRepository.delete(instantToDelete);
+//        Map<String, Boolean> response = new HashMap<>();
+//        response.put(instantToDelete.getTitle()+"deleted", Boolean.TRUE);
+        return instantToDelete;
     }
 }
