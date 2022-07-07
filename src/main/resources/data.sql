@@ -10,27 +10,31 @@ INTO
   (name, surname, avatar, mail, password)
 VALUES
   ('User', '2', 'user.jpg', 'mail@mail.com', 'password');
+
 INSERT
 INTO
   instants
   (title, `description`, image, location, creator_id)
 VALUES
-  ('Paris 2017', 'Lovely place!', 'paris.jpg', 'Paris, France', 1);
-INSERT
-INTO
-  instants
-  (title, `description`, image, location, creator_id)
-VALUES
-  ('London 2019', 'Fantastic city!', 'london.jpg', 'London, UK', 1);
-INSERT
-INTO
-  instants
-  (title, `description`, image, location, creator_id)
-VALUES
-  ('Al cel de Catalunya', 'Sempre amunt!', 'lapica.jpg', 'La Pica d Estats 3.143m, Catalunya', 2);
+  ('London', 'Amazing place!', 'lnd.jpg', 'London, UK', 1);
+  INSERT
+  INTO
+    instants
+    (title, `description`, image, location, creator_id)
+  VALUES
+    ('Al sostre de Catalunya, 3143m', 'Bonic passeig abans d''esmorzar!', 'pica.jpg', 'La Pica d''Estats, Catalunya', 1);
+
+
 INSERT
 INTO
   comments
-  (comment, date, creator_id, instant_id)
+  (comment, creator_id, instant_id)
 VALUES
-  ('M''encanta aquest lloc!', 07/07/22, 1, 1);
+  ('Aw! I love London! ', 1, 1);
+
+INSERT
+INTO
+  comments
+  (comment, creator_id, instant_id)
+VALUES
+  ('Perfect place! ', 1, 1);
