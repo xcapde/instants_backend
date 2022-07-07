@@ -32,12 +32,19 @@ public class InstantController {
     }
 
     @PostMapping("/instants")
-    Instant create(@RequestBody InstantRequestDto instantRequest){
+    Instant create(@RequestBody InstantRequestDto newInstant){
         var authUser = getAuthUser();
-        return instantService.create(instantRequest, authUser);
+        return instantService.create(newInstant, authUser);
     }
     private User getAuthUser(){
         return userService.getById(1L);
     }
+
+    @PutMapping("/instants/{id}")
+    Instant update(@RequestBody InstantRequestDto newInstant, @PathVariable Long id){
+        Instant instant = instantService.update(newInstant, id);
+        return instant;
+    }
+
 
 }

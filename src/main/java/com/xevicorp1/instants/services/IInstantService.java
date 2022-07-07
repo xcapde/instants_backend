@@ -14,4 +14,5 @@ public interface IInstantService {
 
     Instant create(InstantRequestDto instantRequestDto, User auth);
 
+    Instant update(InstantRequestDto instantRequestDto, Long id);
 }

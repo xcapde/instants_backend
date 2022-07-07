@@ -30,12 +30,22 @@ public class InstantService implements IInstantService {
 
     @Override
     public Instant create(InstantRequestDto instantDto, User auth) {
-        var instant = new Instant();
-        instant.setTitle(instantDto.getTitle());
-        instant.setDescription(instantDto.getDescription());
-        instant.setImage(instantDto.getImage());
-        instant.setLocation(instantDto.getLocation());
-        instant.setCreator(auth);
-        return instantRepository.save(instant);
+        var newInstant = new Instant();
+        newInstant.setTitle(instantDto.getTitle());
+        newInstant.setDescription(instantDto.getDescription());
+        newInstant.setImage(instantDto.getImage());
+        newInstant.setLocation(instantDto.getLocation());
+        newInstant.setCreator(auth);
+        return instantRepository.save(newInstant);
+    }
+
+    @Override
+    public Instant update(InstantRequestDto instantDto, Long id) {
+        var instantToEdit = instantRepository.findById(id).get();
+        instantToEdit.setTitle(instantDto.getTitle());
+        instantToEdit.setDescription(instantDto.getDescription());
+        instantToEdit.setImage(instantDto.getImage());
+        instantToEdit.setLocation(instantDto.getLocation());
+        return instantRepository.save(instantToEdit);
     }
 }
