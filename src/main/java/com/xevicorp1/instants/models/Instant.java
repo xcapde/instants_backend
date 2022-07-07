@@ -15,4 +15,9 @@ public class Instant {
     private String title;
     private String description;
     private String image;
+    private String location;
+    private Integer comments;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
 }

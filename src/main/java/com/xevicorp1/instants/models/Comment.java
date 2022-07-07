@@ -14,4 +14,10 @@ public class Comment {
     private Long id;
     private String comment;
     private Integer date;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "instant_id")
+    private Instant instant;
 }
