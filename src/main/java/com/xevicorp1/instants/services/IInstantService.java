@@ -19,8 +19,5 @@ public interface IInstantService {
 
     Instant delete(Long id);
 
-    List<Instant> getBySearch(String text);
-
-    @Query("SELECT i FROM Instant i WHERE i.title = :title || :description")
-    List<Instant> findByTitleOrDescriptionContains(String text);
+    List<Instant> findByTitleContainsOrDescriptionContains(String text);
 }

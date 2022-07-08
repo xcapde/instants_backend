@@ -49,14 +49,14 @@ public class InstantController {
     }
 
     @DeleteMapping("/instants/{id}")
-    Instant delete(@PathVariable Long id){
+    Boolean delete(@PathVariable Long id){
         Instant instant = instantService.delete(id);
-        return instant;
+        return true;
     }
 
     @GetMapping(value="/instants", params="search")
-        List<Instant> findByTitleOrDescriptionContains(@RequestParam String text){
-        var searchResult = instantService.getBySearch(text);
+        List<Instant> getBySearch(@RequestParam String search){
+        var searchResult = instantService.findByTitleContainsOrDescriptionContains(search);
             return searchResult;
     }
 }
