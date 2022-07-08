@@ -6,6 +6,6 @@ import lombok.Data;
 public class InstantRequestDto {
     private String title;
     private String description;
-    private String image;
+    private String imgUrl;
     private String location;
 }

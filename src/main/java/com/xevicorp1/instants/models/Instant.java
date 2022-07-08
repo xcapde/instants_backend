@@ -18,7 +18,7 @@ public class Instant {
     private Long id;
     private String title;
     private String description;
-    private String image;
+    private String imgUrl;
     private String location;
 
     @ManyToOne

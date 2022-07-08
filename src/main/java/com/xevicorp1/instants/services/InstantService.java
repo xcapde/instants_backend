@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class InstantService implements IInstantService {
@@ -36,7 +37,7 @@ public class InstantService implements IInstantService {
         var newInstant = new Instant();
         newInstant.setTitle(instantDto.getTitle());
         newInstant.setDescription(instantDto.getDescription());
-        newInstant.setImage(instantDto.getImage());
+        newInstant.setImgUrl(instantDto.getImgUrl());
         newInstant.setLocation(instantDto.getLocation());
         newInstant.setCreator(auth);
         return instantRepository.save(newInstant);
@@ -47,7 +48,7 @@ public class InstantService implements IInstantService {
         var instantToEdit = instantRepository.findById(id).get();
         instantToEdit.setTitle(instantDto.getTitle());
         instantToEdit.setDescription(instantDto.getDescription());
-        instantToEdit.setImage(instantDto.getImage());
+        instantToEdit.setImgUrl(instantDto.getImgUrl());
         instantToEdit.setLocation(instantDto.getLocation());
         return instantRepository.save(instantToEdit);
     }
@@ -59,5 +60,23 @@ public class InstantService implements IInstantService {
 //        Map<String, Boolean> response = new HashMap<>();
 //        response.put(instantToDelete.getTitle()+"deleted", Boolean.TRUE);
         return instantToDelete;
+    }
+
+    @Override
+    public List<Instant> getBySearch(String text) {
+        var instantsList = this.getAll();
+        var searchList = instantsList.stream()
+                .filter( i -> i.getTitle().contains(text) || i.getDescription().contains(text))
+                .collect(Collectors.toList());
+        return searchList;
+    }
+
+    @Override
+    public List<Instant> findByTitleOrDescriptionContains(String text) {
+        var instantsList = this.getAll();
+        var searchList = instantsList.stream()
+                .filter( i -> i.getTitle().contains(text) || i.getDescription().contains(text))
+                .collect(Collectors.toList());
+        return searchList;
     }
 }

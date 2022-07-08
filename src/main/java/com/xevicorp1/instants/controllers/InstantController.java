@@ -5,9 +5,11 @@ import com.xevicorp1.instants.models.Instant;
 import com.xevicorp1.instants.models.User;
 import com.xevicorp1.instants.services.IInstantService;
 import com.xevicorp1.instants.services.IUserService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -52,5 +54,9 @@ public class InstantController {
         return instant;
     }
 
-
+    @GetMapping(value="/instants", params="search")
+        List<Instant> findByTitleOrDescriptionContains(@RequestParam String text){
+        var searchResult = instantService.getBySearch(text);
+            return searchResult;
+    }
 }
