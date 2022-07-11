@@ -21,11 +21,11 @@ import static org.mockito.ArgumentMatchers.any;
 @SpringBootTest
 class InstantServiceTest {
 
-    // TEST DOUBLE --> CLASSES FALSEJADES PER COBRIR EL FORAT QUE DEIXA EL REPOSITORY (MOCK)
-    // FEMR SERVIR AQUEST REPO PER FER TESTS ENLLOC DEL BO
-    // MOCKEGEM UN REPO QUE FACI SERVIR LA INTERFÍCIE DE REPO QUE JA TENIM
-    // SUT = A LA FUNCIÓ QUE FEM SERVIR
-    // MOCKITO WHEN = A LA FUNCIÓ UTILITZADA AMB EL REPO DINS DEL MÈTODE
+    // TEST DOUBLE --> Classes falsejades per cobrir el forat que deixa el repositori --> Mock
+    // Utilitzem aquest Repo per fer els tests enlloc del Repo oficial
+    // Mockegem un Repo que utilitzi la interfície de Repo que tenim creada
+    // SUT = a la funció que testegem del InstantService
+    // MOCKITO WHEN = a la funció utilitzada amb el Repo dins del mètode testejat
     @Mock
     IInstantRepository mockInstantRepository;
 
@@ -125,10 +125,8 @@ class InstantServiceTest {
         return updatedInstant;
     }
 
-
     @Test
     void deleteRemoveAnInstant() {
-        // GIVEN
         var instantService = new InstantService(mockInstantRepository);
         var instant1 = new Instant();
         instant1.setId(1L);
@@ -153,6 +151,17 @@ class InstantServiceTest {
 
     @Test
     void findByTitleContainsOrDescriptionContains() {
+        var instantService = new InstantService(mockInstantRepository);
+        var instantRequest1 = new InstantRequestDto("London 2020","Fantastic city","lndn.jpg","London, UK");
+        var instantRequest2 = new InstantRequestDto("Finland 2019","Frozen place!","flnd.jpg","Helsinki, Finland");
+        var instantList = List.of(instantRequest1, instantRequest2);
 
+//  S'HA D'UTILITZAR      Mockito.when(mockInstantRepository.findAll()).thenReturn(instantList);
+
+        // SYSTEM UNDER TEST
+        var sut = instantService.findByTitleContainsOrDescriptionContains("London");
+        System.out.println(sut);
+        assertThat(sut,equalTo(instantRequest2) );
+//        assertThat(sut.size(),equalTo(instantRequest1) ); // Perquè falli
     }
 }

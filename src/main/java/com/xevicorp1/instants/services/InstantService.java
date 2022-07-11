@@ -59,10 +59,10 @@ public class InstantService implements IInstantService {
     }
 
     @Override
-    public List<Instant> findByTitleContainsOrDescriptionContains(String text) {
+    public List<Instant> findByTitleContainsOrDescriptionContains(String search) {
         var instantsList = this.getAll();
         var searchList = instantsList.stream()
-                .filter( i -> i.getTitle().contains(text) || i.getDescription().contains(text))
+                .filter( i -> i.getTitle().contains(search) || i.getDescription().contains(search))
                 .collect(Collectors.toList());
         return searchList;
     }
