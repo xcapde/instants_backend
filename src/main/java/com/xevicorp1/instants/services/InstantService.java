@@ -7,7 +7,6 @@ import com.xevicorp1.instants.respositories.IInstantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class InstantService implements IInstantService {
@@ -59,11 +58,10 @@ public class InstantService implements IInstantService {
     }
 
     @Override
-    public List<Instant> findByTitleContainsOrDescriptionContains(String search) {
+    public List<Instant> findBySearch(String search) {
         var instantsList = this.getAll();
-        var searchList = instantsList.stream()
-                .filter( i -> i.getTitle().contains(search) || i.getDescription().contains(search))
-                .collect(Collectors.toList());
+        var searchList = instantRepository.findByTitleContainsOrDescriptionContainsAllIgnoreCase(search);
         return searchList;
     }
+
 }

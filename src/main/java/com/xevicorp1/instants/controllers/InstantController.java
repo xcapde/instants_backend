@@ -56,7 +56,7 @@ public class InstantController {
 
     @GetMapping(value="/instants", params="search")
         List<Instant> getBySearch(@RequestParam String search){
-        var searchResult = instantService.findByTitleContainsOrDescriptionContains(search);
+        var searchResult = instantService.findBySearch(search);
             return searchResult;
     }
 }

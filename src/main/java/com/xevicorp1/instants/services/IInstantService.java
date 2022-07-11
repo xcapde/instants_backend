@@ -19,5 +19,5 @@ public interface IInstantService {
 
     Instant delete(Long id);
 
-    List<Instant> findByTitleContainsOrDescriptionContains(String text);
+    List<Instant> findBySearch(String search);
 }

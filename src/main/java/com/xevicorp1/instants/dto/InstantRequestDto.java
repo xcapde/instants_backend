@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor //És el constructor
-@Builder //Patró de disseny
+@Builder //Patró de disseny per fer el Mapper
 public class InstantRequestDto {
     private String title;
     private String description;

@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface IInstantRepository extends JpaRepository<Instant, Long> {
     @Query("select i from Instant i " +
-            "where i.title like concat('%', :title, '%') or i.description like concat('%', :description, '%')")
-    List<Instant> findByTitleContainsOrDescriptionContains(@Param("title") String title, @Param("description") String description);
+            "where upper(i.title) like upper(concat('%', :search, '%')) or upper(i.description) like upper(concat('%', :search, '%'))")
+    List<Instant> findByTitleContainsOrDescriptionContainsAllIgnoreCase(@Param("search") String search);
 
+    //Query canviada manualment perquè només ens interessa tenir un paràmetre("search" per títle i description.
 }
