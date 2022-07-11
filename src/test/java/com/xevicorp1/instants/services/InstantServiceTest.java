@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 //import static org.hamcrest.Matchers.*; --> IMPORTAR TOTS ELS MATCHERS (*)
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,7 +24,8 @@ class InstantServiceTest {
     // TEST DOUBLE --> CLASSES FALSEJADES PER COBRIR EL FORAT QUE DEIXA EL REPOSITORY (MOCK)
     // FEMR SERVIR AQUEST REPO PER FER TESTS ENLLOC DEL BO
     // MOCKEGEM UN REPO QUE FACI SERVIR LA INTERFÍCIE DE REPO QUE JA TENIM
-    // SUT S'IGUALA A LA FUNCIÓ QUE FEM SERVIR AMB EL REPO DINS DEL MÈTODE
+    // SUT = A LA FUNCIÓ QUE FEM SERVIR
+    // MOCKITO WHEN = A LA FUNCIÓ UTILITZADA AMB EL REPO DINS DEL MÈTODE
     @Mock
     IInstantRepository mockInstantRepository;
 
@@ -31,9 +33,7 @@ class InstantServiceTest {
     void getAllReturnsListOfInstants() {
         // GIVEN
         var instantService = new InstantService(mockInstantRepository);
-
         var instantList = List.of(new Instant(), new Instant());
-
         Mockito.when(mockInstantRepository.findAll()).thenReturn(instantList);
 
         // SYSTEM UNDER TEST --> EL QUE S'ESTÀ TESTEJANT, EQUIVALENT A UN RESULT
@@ -41,33 +41,36 @@ class InstantServiceTest {
 
         // THEN
         assertThat(sut.size(),equalTo(2) );
-//        assertThat(sut.size(),equalTo(1) ); // Per comprovar que falla
+//        assertThat(sut.size(),equalTo(1) ); // Perquè falli
     }
 
-//    @Test
-//    void getInstantCalledByItsId() {
-//        // GIVEN
-//        var instantService = new InstantService(mockInstantRepository);
-//        var instantList = List.of(new Instant(), new Instant());
-//        Mockito.when(mockInstantRepository.findAll()).thenReturn(instantList);
-//
-//        // SYSTEM UNDER TEST --> EL QUE S'ESTÀ TESTEJANT, EQUIVALENT A UN RESULT
-//        var sut = instantService.getAll();
-//
-//        // THEN
-//        assertThat(sut.size(),equalTo(2) );
-//    }
+    @Test
+    void getByIdReturnsAnInstantWithSameId() {
+        // GIVEN
+        var instantService = new InstantService(mockInstantRepository);
+        var instant = new Instant();
+        instant.setId(1L);
+        var id = 1L;
+
+        Mockito.when(mockInstantRepository.findById(id)).thenReturn(Optional.of(instant));
+
+        // SYSTEM UNDER TEST
+        var sut = instantService.getById(id);
+
+        // THEN
+        assertThat(sut.getId(),equalTo(1L) );
+//        assertThat(sut.getId(),equalTo(2L) ); // Perquè falli
+    }
 
     @Test
     void createSaveANewInstantMappedFromDTO() {
         // GIVEN
         var instantService = new InstantService(mockInstantRepository);
-
         var instantRequest = new InstantRequestDto("London 2020","Fantastic city","lndn.jpg","London, UK");
         var creator = new User();
         creator.setId(1L);
 
-        Instant instant = getInstant(creator); // Refactoritzat i mètode extret a fora del test (fila 83)
+        Instant instant = getInstant(creator); // Refactoritzat i mètode extret a sota del test
 
         Mockito.when(mockInstantRepository.save(any(Instant.class))).thenReturn(instant);
 
@@ -76,7 +79,7 @@ class InstantServiceTest {
 
         // THEN
         assertThat(sut.getCreator(),equalTo(creator));
-//        assertThat(sut.getCreator(),equalTo(new User())); // Per comprovar que falla
+//        assertThat(sut.getCreator(),equalTo(new User())); // Perquè falli
     }
 
     private Instant getInstant(User creator) {
