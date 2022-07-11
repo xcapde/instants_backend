@@ -93,9 +93,39 @@ class InstantServiceTest {
         return instant;
     }
 
-//    @Test
-//    void update() {
-//    }
+    @Test
+    void updateSaveAnInstantMappedFromDTO() {
+        // GIVEN
+        var instantService = new InstantService(mockInstantRepository);
+        var instantToEdit = new Instant();
+        instantToEdit.setId(2L);
+        var instantRequest = new InstantRequestDto("Finland 2020","Frozen place!","flnd.jpg","Helsinki, Finland");
+        var id = 2L;
+
+        // Refactoritzat i mètode extret a sota del test !!!
+        Instant updatedInstant = getInstant(instantToEdit, instantRequest);
+
+        Mockito.when(mockInstantRepository.findById(id)).thenReturn(Optional.of(instantToEdit));
+        Mockito.when(mockInstantRepository.save(instantToEdit)).thenReturn(updatedInstant);
+
+        // SYSTEM UNDER TEST --> EL QUE S'ESTÀ TESTEJANT, EQUIVALENT A UN RESULT
+        var sut = instantService.update(instantRequest, id);
+
+        // THEN
+        assertThat(sut.getTitle(),equalTo(updatedInstant.getTitle()) );
+//        assertThat(sut.getTitle(),equalTo(new Instant().getTitle()) ); // Perquè falli
+    }
+
+    private Instant getInstant(Instant instantToEdit, InstantRequestDto instantRequest) {
+        var updatedInstant = new Instant();
+        updatedInstant.setId(instantToEdit.getId());
+        updatedInstant.setTitle(instantRequest.getTitle());
+        updatedInstant.setDescription(instantRequest.getDescription());
+        updatedInstant.setImgUrl(instantRequest.getImgUrl());
+        updatedInstant.setLocation(instantRequest.getLocation());
+        return updatedInstant;
+    }
+
 //
 //    @Test
 //    void delete() {
