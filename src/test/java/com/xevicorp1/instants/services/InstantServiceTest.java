@@ -102,8 +102,7 @@ class InstantServiceTest {
         var instantRequest = new InstantRequestDto("Finland 2020","Frozen place!","flnd.jpg","Helsinki, Finland");
         var id = 2L;
 
-        // Refactoritzat i mètode extret a sota del test !!!
-        Instant updatedInstant = getInstant(instantToEdit, instantRequest);
+        Instant updatedInstant = getInstant(instantToEdit, instantRequest); // Refactoritzat i mètode extret a sota del test !!!
 
         Mockito.when(mockInstantRepository.findById(id)).thenReturn(Optional.of(instantToEdit));
         Mockito.when(mockInstantRepository.save(instantToEdit)).thenReturn(updatedInstant);
@@ -126,12 +125,34 @@ class InstantServiceTest {
         return updatedInstant;
     }
 
-//
-//    @Test
-//    void delete() {
-//    }
-//
-//    @Test
-//    void findByTitleContainsOrDescriptionContains() {
-//    }
+
+    @Test
+    void deleteRemoveAnInstant() {
+        // GIVEN
+        var instantService = new InstantService(mockInstantRepository);
+        var instant1 = new Instant();
+        instant1.setId(1L);
+        var instant2 = new Instant();
+        instant2.setId(2L);
+        var instant3 = new Instant();
+        instant3.setId(3L);
+        var instantList = List.of(instant1, instant2, instant3);
+        var instantToDelete = new Instant();
+        var id = 2L;
+        instantToDelete.setId(id);
+
+        Mockito.when(mockInstantRepository.findById(id)).thenReturn(Optional.of(instantToDelete));
+
+        // SYSTEM UNDER TEST
+        var sut = instantService.delete(2L);
+
+        // THEN
+        assertThat(sut,equalTo(instant2) );
+//        assertThat(sut,equalTo(instant1) ); // perquè falli
+    }
+
+    @Test
+    void findByTitleContainsOrDescriptionContains() {
+
+    }
 }
