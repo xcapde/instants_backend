@@ -142,19 +142,22 @@ class InstantServiceTest {
     @Test
     void findByTitleContainsOrDescriptionContainsShouldGetAListOfResults() {
         var instantService = new InstantService(mockInstantRepository);
-        var instantRequest1 = new InstantRequestDto("London 2020","Fantastic city","lndn.jpg","London, UK");
-        var instantRequest2 = new InstantRequestDto("Finland 2019","Frozen place!","flnd.jpg","Helsinki, Finland");
-        var instantRequest3 = new InstantRequestDto("Paris 2019","City of love","paris.jpg","Paris, France");
-        var instantList = List.of(instantRequest1, instantRequest2, instantRequest3);
+        var instant1 = new Instant();
+        instant1.setTitle("London 2020");
+        var instant2 = new Instant();
+        instant2.setTitle("Paris 2020");
+        var instant3 = new Instant();
+        instant3.setTitle("Finlandia 2019");
+        var instantList = List.of(instant1, instant2, instant3);
         var search = "2019";
-        var searchList = List.of(instantRequest2, instantRequest3);
+        var searchList = List.of(instant3);
 
-//        Mockito.when(mockInstantRepository.findByTitleContainsOrDescriptionContainsOrLocationContainsAllIgnoreCase(search)).thenReturn();
+        Mockito.when(mockInstantRepository.findByTitleContainsOrDescriptionContainsOrLocationContainsAllIgnoreCase(search)).thenReturn(searchList);
+
         // SYSTEM UNDER TEST
         var sut = instantService.findBySearch(search);
-        System.out.println(sut);
 
         assertThat(sut,equalTo(searchList) );
-//        assertThat(sut.size(),equalTo(instantList) ); // Perquè falli
+//        assertThat(sut,equalTo(instant2) ); // Perquè falli
     }
 }
