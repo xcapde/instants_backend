@@ -59,8 +59,7 @@ public class InstantService implements IInstantService {
 
     @Override
     public List<Instant> findBySearch(String search) {
-        var instantsList = this.getAll();
-        var searchList = instantRepository.findByTitleContainsOrDescriptionContainsAllIgnoreCase(search);
+        var searchList = instantRepository.findByTitleContainsOrDescriptionContainsOrLocationContainsAllIgnoreCase(search);
         return searchList;
     }
 

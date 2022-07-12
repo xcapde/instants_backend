@@ -70,7 +70,13 @@ class InstantServiceTest {
         var creator = new User();
         creator.setId(1L);
 
-        Instant instant = getInstant(creator); // Refactoritzat i mètode extret a sota del test
+        var instant = new Instant();
+        instant.setId(1L);
+        instant.setTitle("London 2020");
+        instant.setDescription("Fantastic city");
+        instant.setImgUrl("lndn.jpg");
+        instant.setLocation("London, UK");
+        instant.setCreator(creator);
 
         Mockito.when(mockInstantRepository.save(any(Instant.class))).thenReturn(instant);
 
@@ -82,17 +88,6 @@ class InstantServiceTest {
 //        assertThat(sut.getCreator(),equalTo(new User())); // Perquè falli
     }
 
-    private Instant getInstant(User creator) {
-        var instant = new Instant();
-        instant.setId(1L);
-        instant.setTitle("London 2020");
-        instant.setDescription("Fantastic city");
-        instant.setImgUrl("lndn.jpg");
-        instant.setLocation("London, UK");
-        instant.setCreator(creator);
-        return instant;
-    }
-
     @Test
     void updateSaveAnInstantMappedFromDTO() {
         // GIVEN
@@ -102,7 +97,12 @@ class InstantServiceTest {
         var instantRequest = new InstantRequestDto("Finland 2020","Frozen place!","flnd.jpg","Helsinki, Finland");
         var id = 2L;
 
-        Instant updatedInstant = getInstant(instantToEdit, instantRequest); // Refactoritzat i mètode extret a sota del test !!!
+        var updatedInstant = new Instant();
+        updatedInstant.setId(instantToEdit.getId());
+        updatedInstant.setTitle(instantRequest.getTitle());
+        updatedInstant.setDescription(instantRequest.getDescription());
+        updatedInstant.setImgUrl(instantRequest.getImgUrl());
+        updatedInstant.setLocation(instantRequest.getLocation());
 
         Mockito.when(mockInstantRepository.findById(id)).thenReturn(Optional.of(instantToEdit));
         Mockito.when(mockInstantRepository.save(instantToEdit)).thenReturn(updatedInstant);
@@ -113,16 +113,6 @@ class InstantServiceTest {
         // THEN
         assertThat(sut.getTitle(),equalTo(updatedInstant.getTitle()) );
 //        assertThat(sut.getTitle(),equalTo(new Instant().getTitle()) ); // Perquè falli
-    }
-
-    private Instant getInstant(Instant instantToEdit, InstantRequestDto instantRequest) {
-        var updatedInstant = new Instant();
-        updatedInstant.setId(instantToEdit.getId());
-        updatedInstant.setTitle(instantRequest.getTitle());
-        updatedInstant.setDescription(instantRequest.getDescription());
-        updatedInstant.setImgUrl(instantRequest.getImgUrl());
-        updatedInstant.setLocation(instantRequest.getLocation());
-        return updatedInstant;
     }
 
     @Test
@@ -149,21 +139,22 @@ class InstantServiceTest {
 //        assertThat(sut,equalTo(instant1) ); // perquè falli
     }
 
-//    @Test
-//    void findByTitleContainsOrDescriptionContains() {
-//        var instantService = new InstantService(mockInstantRepository);
-//        var instantRequest1 = new InstantRequestDto("London 2020","Fantastic city","lndn.jpg","London, UK");
-//        var instantRequest2 = new InstantRequestDto("Finland 2019","Frozen place!","flnd.jpg","Helsinki, Finland");
-//        var instantList = List.of(instantRequest1, instantRequest2);
-//        var search = "2019";
-//
-////        Mockito.when(mockInstantRepository.findByTitleContainsOrDescriptionContainsAllIgnoreCase(search)).thenReturn(instantList);
-//
-//        // SYSTEM UNDER TEST
-//        var sut = instantService.findBySearch(search);
-//        System.out.println(sut);
-//
-//        assertThat(sut,equalTo(instantRequest2) );
-////        assertThat(sut.size(),equalTo(instantRequest1) ); // Perquè falli
-//    }
+    @Test
+    void findByTitleContainsOrDescriptionContainsShouldGetAListOfResults() {
+        var instantService = new InstantService(mockInstantRepository);
+        var instantRequest1 = new InstantRequestDto("London 2020","Fantastic city","lndn.jpg","London, UK");
+        var instantRequest2 = new InstantRequestDto("Finland 2019","Frozen place!","flnd.jpg","Helsinki, Finland");
+        var instantRequest3 = new InstantRequestDto("Paris 2019","City of love","paris.jpg","Paris, France");
+        var instantList = List.of(instantRequest1, instantRequest2, instantRequest3);
+        var search = "2019";
+        var searchList = List.of(instantRequest2, instantRequest3);
+
+//        Mockito.when(mockInstantRepository.findByTitleContainsOrDescriptionContainsOrLocationContainsAllIgnoreCase(search)).thenReturn();
+        // SYSTEM UNDER TEST
+        var sut = instantService.findBySearch(search);
+        System.out.println(sut);
+
+        assertThat(sut,equalTo(searchList) );
+//        assertThat(sut.size(),equalTo(instantList) ); // Perquè falli
+    }
 }
