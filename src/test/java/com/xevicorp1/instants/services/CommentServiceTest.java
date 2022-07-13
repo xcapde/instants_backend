@@ -45,6 +45,21 @@ class CommentServiceTest {
     }
 
     @Test
+    void getByIdShouldReturnACommentWithSameId() {
+        var commentService = new CommentService(mockCommentRepository, mockInstantRepository);
+        var id = 1L;
+        var selectedComment = new Comment();
+        selectedComment.setId(id);
+
+        Mockito.when(mockCommentRepository.findById(id)).thenReturn(Optional.of(selectedComment));
+        //SUT
+        var sut = commentService.getById(id);
+        //THEN
+        assertThat(sut.getId(),equalTo(1L));
+//        assertThat(sut.getId(),equalTo(2L)); // Perquè falli
+    }
+
+    @Test
     void createSaveANewCommentFromDTO() {
         var commentService = new CommentService(mockCommentRepository, mockInstantRepository);
 
@@ -73,4 +88,5 @@ class CommentServiceTest {
 //        assertThat(sut.getInstant(),equalTo(instantToComment) );
 //        assertThat(sut.getCreator(),equalTo(new User()) ); // Perquè falli
     }
+
 }
