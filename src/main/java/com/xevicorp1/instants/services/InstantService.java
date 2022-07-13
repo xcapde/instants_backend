@@ -23,8 +23,6 @@ public class InstantService implements IInstantService {
 
     @Override
     public Instant getById(Long id) {
-//        var instantList = instantRepository.findAll();
-//        var instant = instantList.stream().filter(i -> i.getId() == id).findFirst().get();
         var instant = instantRepository.findById(id).get();
         return instant;
     }

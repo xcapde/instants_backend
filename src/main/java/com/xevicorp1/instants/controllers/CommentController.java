@@ -9,6 +9,7 @@ import com.xevicorp1.instants.services.IInstantService;
 import com.xevicorp1.instants.services.IUserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,16 @@ public class CommentController {
     List<Comment> getAll(){
         return commentService.getAll();
     }
+
+    @GetMapping("/comments/{id}")
+    Comment findById(@PathVariable Long id){
+        return commentService.getById(id);
+    }
+
+//    @GetMapping("/instants/{id}/comments")
+//    List<Comment> getAllByInstantId(@PathVariable Long id){
+//        return commentService.getAllByInstantId(id);
+//    }
 
     @PostMapping("/comments")
     Comment create(@RequestBody CommentRequestDto commentRequest){
