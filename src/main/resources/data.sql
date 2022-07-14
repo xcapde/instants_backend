@@ -3,7 +3,7 @@ INTO
   users
   (name, surname, avatar, mail, password)
 VALUES
-  ('Xavier', 'Puig', 'https://s1.wklcdn.com/image_39/1192315/photo.jpg?1518278139371', 'mail@mail.com', 'password');
+  ('Xavier', 'Capdevila', 'https://s1.wklcdn.com/image_39/1192315/photo.jpg?1518278139371', 'mail@mail.com', 'password');
 INSERT
 INTO
   users
@@ -139,3 +139,9 @@ INTO
 VALUES
   ('Perfect place! ', 1, 1);
 
+INSERT
+INTO
+  comments
+  (comment, creator_id, instant_id)
+VALUES
+  ('Comentant per aquí..', 2, 18);
