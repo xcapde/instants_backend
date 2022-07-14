@@ -13,7 +13,7 @@ public interface ICommentService {
 
     Comment getById(Long id);
 
-//    List<Comment>getAllByInstantId(Long id);
+    List<Comment>getAllByInstantId(Long id);
 
     Comment create(CommentRequestDto commentDto, User auth);
 }

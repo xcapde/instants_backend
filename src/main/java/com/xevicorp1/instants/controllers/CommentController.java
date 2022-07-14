@@ -33,10 +33,10 @@ public class CommentController {
         return commentService.getById(id);
     }
 
-//    @GetMapping("/instants/{id}/comments")
-//    List<Comment> getAllByInstantId(@PathVariable Long id){
-//        return commentService.getAllByInstantId(id);
-//    }
+    @GetMapping("/instants/{id}/comments")
+    List<Comment> getAllByInstantId(@PathVariable Long id){
+        return commentService.getAllByInstantId(id);
+    }
 
     @PostMapping("/comments")
     Comment create(@RequestBody CommentRequestDto commentRequest){

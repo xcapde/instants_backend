@@ -8,8 +8,6 @@ import com.xevicorp1.instants.respositories.ICommentRepository;
 import com.xevicorp1.instants.respositories.IInstantRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -33,14 +31,12 @@ public class CommentService implements ICommentService{
         return comment;
     }
 
-//    @Override
-//    public List<Comment> getAllByInstantId(Long id) {
+    @Override
+    public List<Comment> getAllByInstantId(Long id) {
 //        var commentedInstant = instantRepository.findById(id).get();
-//        var commentedId = commentedInstant.getId();
 //        var commentsListById = commentedInstant.getComments();
-////        return commentRepository.findAllById(Collections.singleton(commentedId));
-//        return commentRepository.findAll();
-//    }
+        return commentRepository.findCommentsByInstantId(id);
+    }
 
     @Override
     public Comment create(CommentRequestDto commentDto, User auth) {

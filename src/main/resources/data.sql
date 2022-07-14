@@ -3,13 +3,13 @@ INTO
   users
   (name, surname, avatar, mail, password)
 VALUES
-  ('Xavier', 'Patata', 'me.jpg', 'mail@mail.com', 'password');
+  ('Xavier', 'Puig', 'https://s1.wklcdn.com/image_39/1192315/photo.jpg?1518278139371', 'mail@mail.com', 'password');
 INSERT
 INTO
   users
   (name, surname, avatar, mail, password)
 VALUES
-  ('User', '2', 'user.jpg', 'mail@mail.com', 'password');
+  ('Tània', 'Alba', 'https://media-exp1.licdn.com/dms/image/C4E03AQH6tFIslgstJA/profile-displayphoto-shrink_100_100/0/1657201449268?e=1663200000&v=beta&t=ZLCEeFJqIF1FZov6abGdhho_y6UsUrZ_xxV3LRG6aWY', 'mail@mail.com', 'password');
 
 
 

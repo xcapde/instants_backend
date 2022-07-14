@@ -23,7 +23,7 @@ public class Instant {
 
     @ManyToOne
     @JoinColumn(name = "creator_id")
-    @JsonIgnore
+//    @JsonIgnore
     private User creator;
 
     @OneToMany(mappedBy = "instant")
