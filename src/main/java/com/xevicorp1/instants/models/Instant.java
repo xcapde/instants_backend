@@ -31,20 +31,25 @@ public class Instant {
     private User creator;
 
     @OneToMany(mappedBy = "instant")
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> commentsList = new ArrayList<>();
     @JsonSerialize
     public int commentsCount(){
-        return this.comments.size();
+        return this.commentsList.size();
     }
-
 
     @OneToMany(mappedBy = "instant")
     private List<Like> likesList = new ArrayList<>();
 
-    public void addLike(Like like){
-        likesList.add(like);
+    public void addLike(Like newLike){
+        if(!newLike.getInstant().equals(this)) return;
+        likesList.add(newLike);
     }
+    @JsonSerialize
     public int likesCount() {
-        return 1;
+        return this.likesList.size();
     }
+
+//    public boolean isLiked(User lover){
+//        if(this.getLikesList().stream().filter(i -> i.getLover() == lover).findFirst())return true;
+//    }
 }

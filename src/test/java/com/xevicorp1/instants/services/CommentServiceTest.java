@@ -60,6 +60,27 @@ class CommentServiceTest {
     }
 
     @Test
+    void getAllByInstantId() {
+        var commentService = new CommentService(mockCommentRepository, mockInstantRepository);
+        var instant1 = new Instant();
+        instant1.setId(1L);
+        var instant2 = new Instant();
+        instant2.setId(2L);
+        var comment1 = new Comment();
+        comment1.setInstant(instant1);
+        var comment2 = new Comment();
+        comment2.setInstant(instant1);
+        var instantComments = List.of(comment1, comment2);
+
+        Mockito.when(mockCommentRepository.findCommentsByInstantId(1L)).thenReturn(instantComments);
+
+        var sut = commentService.getAllCommentsByInstantId(1L);
+
+        assertThat(sut.size(), equalTo(2));
+//        assertThat(sut.size(), equalTo(1)); // Perquè falli
+    }
+
+    @Test
     void createSaveANewCommentFromDTO() {
         var commentService = new CommentService(mockCommentRepository, mockInstantRepository);
 
@@ -88,5 +109,6 @@ class CommentServiceTest {
 //        assertThat(sut.getInstant(),equalTo(instantToComment) );
 //        assertThat(sut.getCreator(),equalTo(new User()) ); // Perquè falli
     }
+
 
 }

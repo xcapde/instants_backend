@@ -35,7 +35,7 @@ public class CommentController {
 
     @GetMapping("/instants/{id}/comments")
     List<Comment> getAllByInstantId(@PathVariable Long id){
-        return commentService.getAllByInstantId(id);
+        return commentService.getAllCommentsByInstantId(id);
     }
 
     @PostMapping("/comments")

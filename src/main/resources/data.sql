@@ -9,7 +9,7 @@ INTO
   users
   (name, surname, avatar, mail, password)
 VALUES
-  ('Tània', 'Alba', 'https://media-exp1.licdn.com/dms/image/C4E03AQH6tFIslgstJA/profile-displayphoto-shrink_100_100/0/1657201449268?e=1663200000&v=beta&t=ZLCEeFJqIF1FZov6abGdhho_y6UsUrZ_xxV3LRG6aWY', 'mail@mail.com', 'password');
+  ('Anna', 'Alba', 'https://media-exp1.licdn.com/dms/image/C4E03AQH6tFIslgstJA/profile-displayphoto-shrink_100_100/0/1657201449268?e=1663200000&v=beta&t=ZLCEeFJqIF1FZov6abGdhho_y6UsUrZ_xxV3LRG6aWY', 'mail@mail.com', 'password');
 
 
 
@@ -108,13 +108,13 @@ INTO
   instants
   (title, `description`, img_Url, location, creator_id)
 VALUES
-  ('Sóc una prova ', 'What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy', 'http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTdiavqt-4NU5TmpRZT52pz7fXVxlCPEeoDAzPA_j1R5BiHYz0fElpYY2xL07NriyZq', 'Lofoten, Norway', 1);
+  ('Soc una prova ', 'What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy', 'http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTdiavqt-4NU5TmpRZT52pz7fXVxlCPEeoDAzPA_j1R5BiHYz0fElpYY2xL07NriyZq', 'Lofoten, Norway', 1);
 INSERT
 INTO
   instants
   (title, `description`, img_Url, location, creator_id)
 VALUES
-  ('Sóc una altra prova ', 'Provant', 'https://images.alphacoders.com/772/thumbbig-772749.webp', 'Lofoten, Norway', 1);
+  ('Soc una altra prova ', 'Provant', 'https://images.alphacoders.com/772/thumbbig-772749.webp', 'Lofoten, Norway', 1);
 INSERT
 INTO
   instants
@@ -144,4 +144,16 @@ INTO
   comments
   (comment, creator_id, instant_id)
 VALUES
-  ('Comentant per aquí..', 2, 18);
+  ('Commenting over here..', 2, 18);
+INSERT
+INTO
+  comments
+  (comment, creator_id, instant_id)
+VALUES
+  ('OMG I love it!! ', 2, 18);
+INSERT
+INTO
+  comments
+  (comment, creator_id, instant_id)
+VALUES
+  ('Oh yeah! Lovely colors baby!', 1, 18);

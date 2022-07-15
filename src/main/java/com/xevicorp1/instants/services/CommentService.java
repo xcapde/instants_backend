@@ -32,9 +32,7 @@ public class CommentService implements ICommentService{
     }
 
     @Override
-    public List<Comment> getAllByInstantId(Long id) {
-//        var commentedInstant = instantRepository.findById(id).get();
-//        var commentsListById = commentedInstant.getComments();
+    public List<Comment> getAllCommentsByInstantId(Long id) {
         return commentRepository.findCommentsByInstantId(id);
     }
 
