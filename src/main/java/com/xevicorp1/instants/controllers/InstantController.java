@@ -6,6 +6,8 @@ import com.xevicorp1.instants.models.User;
 import com.xevicorp1.instants.services.IInstantService;
 import com.xevicorp1.instants.services.IUserService;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,10 +29,17 @@ public class InstantController {
         return instantService.getAll();
     }
 
+//    @GetMapping("/instants/{id}")
+//    Instant getByID(@PathVariable Long id){
+//        Instant instant = instantService.getById(id);
+//        return instant;
+//    }
+
+    // PER LA GESTIÓ D'ERRORS --> RESPONSEENTITY+HTTPSTATUS...
     @GetMapping("/instants/{id}")
-    Instant getByID(@PathVariable Long id){
+    ResponseEntity<Instant> getByID(@PathVariable Long id){
         Instant instant = instantService.getById(id);
-        return instant;
+        return new ResponseEntity<>(instant, HttpStatus.OK);
     }
 
     @PostMapping("/instants")

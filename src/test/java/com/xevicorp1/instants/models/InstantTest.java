@@ -50,18 +50,19 @@ class InstantTest {
     }
 
 //    @Test
-//    void instantShouldntAllowUserAddLikeIfItHasAlreadyBeenPreviouslyAddedForSameUser() {
+//    void instantShouldntAllowUserToRepeatAddMoreThanOneLike() {
 //        var instant = new Instant();
 //        var lover = new User();
+//        var lover2 = new User();
 //        var like1 = new Like(lover,instant);
-//        var like2 = new Like(lover,instant);
+//        var like2 = new Like(lover2,instant);
 //        instant.addLike(like1);
 //        instant.addLike(like2);
 //
 //        var sut = instant.getLikesList();
 //
-//        assertThat(sut, equalTo(1));
-////        assertThat(sut, equalTo(2)); // perquè falli
+////        assertThat(sut, equalTo(1));
+//        assertThat(sut, equalTo(2)); // perquè falli
 //    }
 
 //    @Test

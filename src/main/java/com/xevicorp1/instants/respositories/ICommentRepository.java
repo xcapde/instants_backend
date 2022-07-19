@@ -16,11 +16,4 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
     @Query("select c from Comment c where c.instant.id = :id")
     List<Comment> findCommentsByInstantId(@Param("id") Long id);
 
-
-
-
-
-
-
-
 }

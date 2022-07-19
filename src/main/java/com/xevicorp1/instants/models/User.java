@@ -16,8 +16,6 @@ public class User {
     private String name;
     private String surname;
     private String avatar;
-    @JsonIgnore
     private String mail;
-    @JsonIgnore
     private String password;
 }

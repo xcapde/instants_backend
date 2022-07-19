@@ -30,6 +30,9 @@ public class Instant {
 //    @JsonIgnore
     private User creator;
 
+
+
+    private boolean isCommented = false;
     @OneToMany(mappedBy = "instant")
     private List<Comment> commentsList = new ArrayList<>();
     @JsonSerialize
@@ -37,6 +40,9 @@ public class Instant {
         return this.commentsList.size();
     }
 
+
+
+    private boolean isLiked = false;
     @OneToMany(mappedBy = "instant")
     private List<Like> likesList = new ArrayList<>();
 

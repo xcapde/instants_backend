@@ -13,3 +13,14 @@ public class InstantRequestDto {
     private String imgUrl;
     private String location;
 }
+
+//    private Long id;
+//    private String title;
+//    private String description;
+//    private String imgUrl;
+//    private String location;
+//    private UserPublicRequestDto creator;
+//    //    private boolean isLiked;
+//    private int likesCount;
+//    //    private boolean isCommented;
+//    private int commentsCount;

@@ -21,10 +21,18 @@ public class InstantService implements IInstantService {
         return instantRepository.findAll();
     }
 
+//    @Override
+//    public Instant getById(Long id) {
+//        var instant = instantRepository.findById(id).get();
+//        return instant;
+//    }
+
+    // PER LA GESTIÓ D'ERRORS --> OPTIONAL+EMPTY/PRESENT+THROW+RUNTIME EXCEPTION
     @Override
     public Instant getById(Long id) {
-        var instant = instantRepository.findById(id).get();
-        return instant;
+        var opInstant = instantRepository.findById(id);
+        if(opInstant.isEmpty()) throw new RuntimeException("Instant Not Found");
+        return opInstant.get();
     }
 
     @Override
