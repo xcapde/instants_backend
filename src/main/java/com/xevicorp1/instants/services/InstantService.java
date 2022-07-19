@@ -1,6 +1,7 @@
 package com.xevicorp1.instants.services;
 
 import com.xevicorp1.instants.dto.InstantRequestDto;
+import com.xevicorp1.instants.exceptions.NotFoundException;
 import com.xevicorp1.instants.models.Instant;
 import com.xevicorp1.instants.models.User;
 import com.xevicorp1.instants.respositories.IInstantRepository;
@@ -28,10 +29,19 @@ public class InstantService implements IInstantService {
 //    }
 
     // PER LA GESTIÓ D'ERRORS --> OPTIONAL+EMPTY/PRESENT+THROW+RUNTIME EXCEPTION
+//    @Override
+//    public Instant getById(Long id) {
+//        var opInstant = instantRepository.findById(id);
+//        if(opInstant.isEmpty()) throw new RuntimeException("Instant Not Found");
+//        return opInstant.get();
+//    }
+
+    // PER LA GESTIÓ D'ERRORS --> EXCEPTION PERSONALITZADA
     @Override
     public Instant getById(Long id) {
         var opInstant = instantRepository.findById(id);
-        if(opInstant.isEmpty()) throw new RuntimeException("Instant Not Found");
+        if(opInstant.isEmpty()) throw new NotFoundException("Instant Not Found","P-153");
+
         return opInstant.get();
     }
 
