@@ -41,13 +41,18 @@ public class Instant {
     }
 
 
-
-    private boolean isLiked = false;
+// Utilitzar == equals compara només l'atribut, == compara la memòria.
+    public boolean isLiked (User lover) {
+        var likeLover =  likesList.stream().filter(Like -> Like.getLover() == (lover)).findFirst();
+        if (likeLover.isEmpty()) return false;
+        return true;
+    };
     @OneToMany(mappedBy = "instant")
     private List<Like> likesList = new ArrayList<>();
 
     public void addLike(Like newLike){
         if(!newLike.getInstant().equals(this)) return;
+        if(newLike.getInstant().isLiked(newLike.getLover())) return;;
         likesList.add(newLike);
     }
     @JsonSerialize
@@ -55,7 +60,4 @@ public class Instant {
         return this.likesList.size();
     }
 
-//    public boolean isLiked(User lover){
-//        if(this.getLikesList().stream().filter(i -> i.getLover() == lover).findFirst())return true;
-//    }
 }
