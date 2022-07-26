@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,13 +28,12 @@ public class Instant {
 
     @ManyToOne
     @JoinColumn(name = "creator_id")
-//    @JsonIgnore
     private User creator;
 
 
-
     private boolean isCommented = false;
-    @OneToMany(mappedBy = "instant")
+//    @Cascade(org.hibernate.annotations.CascadeType.DELETE) // opció A
+    @OneToMany(mappedBy = "instant", cascade = CascadeType.REMOVE)
     private List<Comment> commentsList = new ArrayList<>();
     @JsonSerialize
     public int commentsCount(){
@@ -41,12 +41,15 @@ public class Instant {
     }
 
 
-// Utilitzar == equals compara només l'atribut, == compara la memòria.
+    private boolean isLiked = false;
+
+// Utilitzar equals compara només l'atribut (User), == compara la memòria.
     public boolean isLiked (User lover) {
         var likeLover =  likesList.stream().filter(Like -> Like.getLover() == (lover)).findFirst();
         if (likeLover.isEmpty()) return false;
         return true;
     };
+
     @OneToMany(mappedBy = "instant")
     private List<Like> likesList = new ArrayList<>();
 
@@ -59,5 +62,4 @@ public class Instant {
     public int likesCount() {
         return this.likesList.size();
     }
-
 }

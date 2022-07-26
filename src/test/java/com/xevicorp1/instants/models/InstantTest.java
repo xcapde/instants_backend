@@ -62,6 +62,20 @@ class InstantTest {
 //        assertThat(sut, equalTo(false)); // perquè falli
     }
     @Test
+    void instantShouldKnowIfAnUserDoesNotLikeIt() {
+        var instant = new Instant();
+        var lover = new User();
+        var notLover = new User();
+        var like = new Like(lover,instant);
+        instant.addLike(like);
+
+        var sut = instant.isLiked(notLover);
+
+        assertThat(sut, equalTo(false));
+//        assertThat(sut, equalTo(true)); // perquè falli
+    }
+
+    @Test
     void instantShouldNotAllowUserToAddMoreThanOneLikeInTheSameInstant() {
         var instant1 = new Instant();
         var lover1 = new User();
@@ -76,19 +90,6 @@ class InstantTest {
 //        assertThat(sut, equalTo(2)); // Perquè falli
     }
 
-    @Test
-    void instantShouldKnowIfAnUserDoesNotLikeIt() {
-        var instant = new Instant();
-        var lover = new User();
-        var notLover = new User();
-        var like = new Like(lover,instant);
-        instant.addLike(like);
-
-        var sut = instant.isLiked(notLover);
-
-        assertThat(sut, equalTo(false));
-//        assertThat(sut, equalTo(true)); // perquè falli
-    }
 
 //    @Test
 //    void getId() {
